@@ -1,0 +1,14 @@
+{
+    "login": "Увійти",
+    "register": "Зареєструватися",
+    "email": "Електронна пошта",
+    "password": "Пароль",
+    "welcome": "Ласкаво просимо до TimeFlow",
+    "language": "Мова",
+    "no_account": "Немає акаунта?",
+    "have_account": "Вже маєте акаунт?",
+    "username": "Ім'я користувача",
+    "login_error": "Помилка входу",
+    "logout": "Вийти",
+    "confirm_password": "Підтвердити пароль"
+  }
