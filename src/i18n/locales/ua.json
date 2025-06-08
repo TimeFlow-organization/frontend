@@ -1,35 +1,87 @@
 {
   "login": "Увійти",
-  "register": "Зареєструватися",
-  "email": "Електронна пошта",
+  "register": "Реєстрація",
+  "email": "Е-пошта",
   "password": "Пароль",
   "welcome": "Ласкаво просимо до TimeFlow",
   "language": "Мова",
   "no_account": "Немає акаунта?",
   "have_account": "Вже маєте акаунт?",
-  "username": "Ім'я користувача",
+  "username": "Ім’я користувача",
   "login_error": "Помилка входу",
   "logout": "Вийти",
-  "confirm_password": "Підтвердити пароль",
-  "create_project": "Створити проєкт",
+  "confirm_password": "Підтвердіть пароль",
+
+  "create_project": "Новий проєкт",
   "your_projects": "Ваші проєкти",
-  "load_projects_error": "Не вдалося завантажити проєкти.",
+  "projects": "Проєкти",
+
+  "load_projects_error": "Не вдалося завантажити проєкти",
   "no_description": "Опис відсутній",
-  "minutes": "хвилин",
+
+  "minutes": "хв",
+
   "edit": "Редагувати",
   "delete": "Видалити",
-  "view_details": "Переглянути",
-  "delete_project_error": "Не вдалося видалити проєкт.",
+  "view_details": "Деталі",
+  "delete_project_error": "Не вдалося видалити проєкт",
+
   "earned": "Зароблено",
   "time_spent": "Витрачено часу",
+
   "sort_by": "Сортувати за",
   "sort_by_date": "Датою",
   "sort_by_name": "Назвою",
+
   "name": "Назва",
   "description": "Опис",
   "create": "Створити",
   "update": "Оновити",
-  "load_project_error": "Не вдалося завантажити проєкт.",
-  "create_project_error": "Не вдалося створити проєкт.",
-  "update_project_error": "Не вдалося оновити проєкт."
+
+  "load_project_error": "Не вдалося завантажити проєкт",
+  "create_project_error": "Не вдалося створити проєкт",
+  "update_project_error": "Не вдалося оновити проєкт",
+
+  "add_task": "Додати задачу",
+  "loading": "Завантаження",
+  "created": "Створено",
+
+  "planned": "У плані",
+  "in_progress": "В роботі",
+  "done": "Завершено",
+
+  "enter_task_name": "Назва задачі",
+  "start_timer_error": "Не вдалося запустити таймер",
+  "stop_timer_error": "Не вдалося зупинити таймер",
+  "start_timer": "Запустити таймер",
+  "stop_timer": "Зупинити таймер",
+
+  "delete_confirm": "Видалити цю задачу?",
+  "delete_task_error": "Не вдалося видалити задачу",
+
+  "create_task": "Нова задача",
+  "expected_earnings": "Очікуваний дохід",
+  "task_name_placeholder": "Назва задачі",
+  "task_description_placeholder": "Опис, посилання, критерії…",
+  "create_task_error": "Не вдалося створити задачу",
+
+  "actual_earnings": "Фактичний дохід",
+  "status": "Статус",
+  "enter_earnings_amount": "Введіть суму",
+
+  "close": "Закрити",
+  "home": "Головна",
+  "reports.title": "Звіти",
+
+  "back": "Назад",
+  "from": "Від",
+  "to": "До",
+  "date": "Дата",
+
+  "reports.choose_project": "Проєкт",
+  "reports.load_error": "Не вдалося завантажити статистику",
+  "reports.time_by_day": "Час по днях",
+  "reports.earnings_by_day": "Дохід по днях",
+  "reports.by_task": "Час та дохід по задачах",
+  "earnings": "дохід"
 }

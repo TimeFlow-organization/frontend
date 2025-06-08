@@ -1,101 +1,109 @@
-import { useTranslation } from 'react-i18next';
-import { useEffect, useState } from 'react';
-import LanguageSwitcher from '../components/LanguageSwitcher';
-import { getToken, logout } from '../services/authService';
-import { useNavigate } from 'react-router-dom';
-import { getAllProjects, deleteProject } from '../services/projectService';
-import ProjectList from '../components/projectList';
+import { useState }                         from 'react';
+import { useNavigate }                      from 'react-router-dom';
+import { useTranslation }                   from 'react-i18next';
+import {
+  useQuery,          // читання списку
+  useMutation,       // видалення
+  useQueryClient
+} from '@tanstack/react-query';
 
+import { getToken }                           from '../services/authService';
+import {
+  getAllProjects,
+  deleteProject
+} from '../services/projectService';
+
+import ProjectList                            from '../components/projectList';
+
+/* ——— тип Project ——— */
 interface Project {
   id: string;
   name: string;
-  description: string;
+  description?: string;
   totalEarned: number;
   totalTimeSpent: number;
   createdAt: string;
 }
 
+/* ——————————————————————————————————————————————— */
+
 export default function HomePage() {
-  const { t } = useTranslation();
-  const [message, setMessage] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [sortKey, setSortKey] = useState<'name' | 'createdAt'>('createdAt');
-  const navigate = useNavigate();
+  const { t }   = useTranslation();
+  const nav     = useNavigate();
+  const qc      = useQueryClient();
 
-  useEffect(() => {
-    const token = getToken();
-    if (!token) {
-      setError('No token found');
-      return;
-    }
+  /* локальне сортування / UI-стан */
+  const [sortKey, setSortKey] =
+    useState<'name' | 'createdAt'>('createdAt');
 
-    fetch('http://localhost:8080/api/test/hello', {
-      headers: { Authorization: `Bearer ${token}` },
-    })
-      .then(res => {
-        if (!res.ok) throw new Error('Unauthorized');
-        return res.text();
-      })
-      .then(setMessage)
-      .catch(() => setError('Authorization failed'));
-
-    getAllProjects()
-      .then(setProjects)
-      .catch(() => setError(t('load_projects_error')));
-  }, [t]);
-
-  const handleLogout = async () => {
-    await logout();
-    navigate('/login');
-  };
-
-  const handleDelete = async (id: string) => {
-    try {
-      await deleteProject(id);
-      setProjects(prev => prev.filter(p => p.id !== id));
-    } catch {
-      setError(t('delete_project_error'));
-    }
-  };
-
-  const sortedProjects = [...projects].sort((a, b) => {
-    if (sortKey === 'name') return a.name.localeCompare(b.name);
-    return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+  /* ——— LOAD ——— */
+  const {
+    data: projects = [],
+    isLoading,
+    error: loadErr
+  } = useQuery<Project[]>({
+    queryKey : ['projects'],          // 🔑 єдиний кеш-ключ
+    queryFn  : getAllProjects,
+    enabled  : Boolean(getToken())    // якщо токена нема — запит не йде
   });
 
+  /* ——— DELETE ——— */
+  const delMut = useMutation({
+    mutationFn : (id: string) => deleteProject(id),
+    onSuccess  : () => qc.invalidateQueries({ queryKey: ['projects'] }),
+    onError    : () => alert(t('delete_project_error'))
+  });
+
+  /* ——— відсортований масив для рендера ——— */
+  const sorted = [...projects].sort((a, b) =>
+    sortKey === 'name'
+      ? a.name.localeCompare(b.name)
+      : new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  );
+
+  /* ——— UI ——— */
   return (
     <div className="container mt-4">
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <LanguageSwitcher />
-        <button onClick={handleLogout} className="btn btn-outline-danger">
-          🔓 {t('logout')}
-        </button>
-      </div>
 
-      <h1>{t('welcome')}</h1>
+      <h1 className="fw-bold mb-4">{t('welcome')}</h1>
 
-      <div className="d-flex justify-content-between align-items-center mb-3">
-        <div>
-          <label className="me-2">{t('sort_by')}</label>
+      {/* панель інструментів */}
+      <div className="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+
+        {/* сортування */}
+        <div className="d-flex align-items-center gap-2">
+          <label className="fw-semibold">{t('sort_by')}:</label>
+
           <select
-            className="form-select d-inline-block w-auto"
-            onChange={(e) => setSortKey(e.target.value as 'name' | 'createdAt')}
+            className="form-select form-select-sm w-auto"
             value={sortKey}
+            onChange={e => setSortKey(e.target.value as any)}
           >
             <option value="createdAt">📅 {t('sort_by_date')}</option>
             <option value="name">🔤 {t('sort_by_name')}</option>
           </select>
         </div>
-        <button className="btn btn-primary" onClick={() => navigate('/projects/create')}>
+
+        {/* «Новий проєкт» */}
+        <button
+          className="btn btn-primary"
+          onClick={() => nav('/projects/create')}
+        >
           ➕ {t('create_project')}
         </button>
       </div>
 
-      {message && <div className="alert alert-success mt-4">{message}</div>}
-      {error && <div className="alert alert-danger mt-4">{error}</div>}
+      {/* повідомлення про помилки / завантаження */}
+      {loadErr   && <div className="alert alert-danger">{t('load_projects_error')}</div>}
+      {isLoading && <p>{t('loading')}…</p>}
 
-      <ProjectList projects={sortedProjects} onDelete={handleDelete} />
+      {/* список проєктів */}
+      {!isLoading && (
+        <ProjectList
+          projects={sorted}
+          onDelete={id => delMut.mutate(id)}
+        />
+      )}
     </div>
   );
 }

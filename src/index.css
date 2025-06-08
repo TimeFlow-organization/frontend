@@ -1,0 +1,27 @@
+/* ——— фон усього body ——— */
+body {
+  background: radial-gradient(
+      circle at top left,
+      #f4f8ff 0%,
+      #f9fcff 40%,
+      #ffffff 90%
+  );
+  min-height: 100vh;
+}
+
+/* ——— контейнер головної сторінки ——— */
+.page-shell {
+  background: #fff;
+  border-radius: 1rem;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .05);
+  padding: 2rem 1.5rem;
+}
+
+/* ——— картка проєкту ——— */
+.project-card {
+  transition: transform .15s ease, box-shadow .15s ease;
+}
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .06);
+}

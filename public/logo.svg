@@ -1,0 +1,16 @@
+<!-- /public/logo.svg — TimeFlow logo as bar-chart in a clock -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" fill="none">
+  <!-- Circle frame -->
+  <circle cx="32" cy="32" r="30" stroke="#3B82F6" stroke-width="4"></circle>
+
+  <!-- Bar chart columns -->
+  <rect x="20" y="36" width="4" height="12" fill="#3B82F6"></rect>
+  <rect x="28" y="32" width="4" height="16" fill="#10B981"></rect>
+  <rect x="36" y="26" width="4" height="22" fill="#F59E0B"></rect>
+
+  <!-- Trend line connecting bar tops -->
+  <polyline points="22,36 30,32 38,26" stroke="#F59E0B" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"></polyline>
+
+  <!-- Small arrow at the end of trend line -->
+  <path d="M40 24 l4 -4 l-4 2" stroke="#F59E0B" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>

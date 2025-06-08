@@ -50,14 +50,7 @@ export default function EditProjectPage() {
           <label className="form-label">{t('description')}</label>
           <textarea className="form-control" value={description} onChange={(e) => setDescription(e.target.value)} />
         </div>
-        <div className="mb-3">
-          <label className="form-label">💰 {t('earned')}</label>
-          <input type="number" className="form-control" value={totalEarned} onChange={(e) => setTotalEarned(Number(e.target.value))} required />
-        </div>
-        <div className="mb-3">
-          <label className="form-label">🕒 {t('time_spent')} ({t('minutes')})</label>
-          <input type="number" className="form-control" value={totalTimeSpent} onChange={(e) => setTotalTimeSpent(Number(e.target.value))} required />
-        </div>
+
         <button type="submit" className="btn btn-success">{t('update')}</button>
       </form>
     </div>

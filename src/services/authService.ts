@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8080/api/auth';
+const API_URL = `${import.meta.env.VITE_API_URL}/auth`;
 
 export async function register(email: string, username: string, password: string) {
   const response = await fetch(`${API_URL}/register`, {
@@ -38,7 +38,7 @@ export async function checkTokenValid(): Promise<boolean> {
     if (!token) return false;
   
     try {
-      const res = await fetch('http://localhost:8080/api/auth/check', {
+      const res = await fetch(`${API_URL}/check`, {
         headers: { Authorization: `Bearer ${token}` },
       });
   

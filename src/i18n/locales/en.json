@@ -1,35 +1,76 @@
 {
-  "login": "Login",
-  "register": "Register",
-  "email": "Email",
+  "login": "Log in",
+  "register": "Sign up",
+  "email": "E-mail",
   "password": "Password",
   "welcome": "Welcome to TimeFlow",
   "language": "Language",
-  "no_account": "Don't have an account?",
+  "no_account": "No account yet?",
   "have_account": "Already have an account?",
   "username": "Username",
-  "login_error": "Login error",
+  "login_error": "Login failed",
   "logout": "Logout",
-  "confirm_password": "Confirm Password",
-  "create_project": "Create Project",
-  "your_projects": "Your Projects",
-  "load_projects_error": "Failed to load projects.",
+  "confirm_password": "Confirm password",
+
+  "create_project": "New project",
+  "your_projects": "Your projects",
+  "projects": "Projects",
+
+  "load_projects_error": "Could not load projects",
   "no_description": "No description",
-  "minutes": "minutes",
+
+  "minutes": "min",
+
   "edit": "Edit",
   "delete": "Delete",
-  "view_details": "View Details",
-  "delete_project_error": "Failed to delete project.",
+  "view_details": "Details",
+  "delete_project_error": "Could not delete project",
+
   "earned": "Earned",
-  "time_spent": "Time Spent",
+  "time_spent": "Time spent",
+
   "sort_by": "Sort by",
   "sort_by_date": "Date",
   "sort_by_name": "Name",
+
   "name": "Name",
   "description": "Description",
   "create": "Create",
   "update": "Update",
-  "load_project_error": "Failed to load project.",
-  "create_project_error": "Failed to create project.",
-  "update_project_error": "Failed to update project."
+
+  "load_project_error": "Could not load project",
+  "create_project_error": "Could not create project",
+  "update_project_error": "Could not update project",
+
+  "add_task": "Add task",
+  "loading": "Loading",
+  "created": "Created",
+
+  "planned": "To-do",
+  "in_progress": "In progress",
+  "done": "Done",
+
+  "enter_task_name": "Task name",
+  "start_timer_error": "Could not start timer",
+  "stop_timer_error": "Could not stop timer",
+  "start_timer": "Start timer",
+  "stop_timer": "Stop timer",
+
+  "delete_confirm": "Delete this task?",
+  "delete_task_error": "Could not delete task",
+
+  "create_task": "New task",
+  "expected_earnings": "Expected earnings",
+  "task_name_placeholder": "Task title",
+  "task_description_placeholder": "Description, links, criteria…",
+  "create_task_error": "Could not create task",
+
+  "actual_earnings": "Actual earnings",
+  "status": "Status",
+  "enter_earnings_amount": "Enter amount",
+
+  "close": "Close",
+  "home": "Home",
+  "reports.title": "Reports",
+  "earnings": "earnings"
 }
