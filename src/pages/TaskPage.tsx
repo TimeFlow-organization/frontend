@@ -98,15 +98,18 @@ export default function TaskPage() {
     <div className="container py-4" style={{ maxWidth: 800 }}>
       {/* ───── header ───── */}
       <div className="d-flex justify-content-between align-items-start flex-wrap gap-3 mb-4">
-        <h1
-          className="fw-bold flex-grow-1 display-6"
-          contentEditable
-          suppressContentEditableWarning
-          onInput={e => handleChange('name', (e.currentTarget.textContent ?? '').trim())}
-          onBlur={() => patch({ name: task.name })}
-        >
-          📝 {task.name || t('name')}
-        </h1>
+<div className="d-flex align-items-center gap-2 w-100 mb-3">
+  <span style={{ fontSize: '1.5rem' }}>📝</span>
+  <input
+    type="text"
+    className="form-control fw-bold fs-3 border-0 shadow-none p-0"
+    style={{ flex: 1 }}
+    value={task.name}
+    onChange={(e) => handleChange('name', e.target.value)}
+    onBlur={() => patch({ name: task.name })}
+  />
+</div>
+
 
         <div className="btn-group">
           <button className="btn btn-outline-danger" onClick={handleDelete}>🗑️</button>
